@@ -50,17 +50,18 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         if self._is_game_over:
-            player = cast.get_first_actor("players")
-            trail = player.get_trail()
+            players = cast.get_actors("players")
+            for player in players:
+                trail = player.get_trail()
 
-            x = int(constants.MAX_X / 2)
-            y = int(constants.MAX_Y / 2)
-            position = Point(x, y)
+                x = int(constants.MAX_X / 2)
+                y = int(constants.MAX_Y / 2)
+                position = Point(x, y)
 
-            message = Actor()
-            message.set_text("Game Over!")
-            message.set_position(position)
-            cast.add_actor("messages", message)
+                message = Actor()
+                message.set_text("Game Over!")
+                message.set_position(position)
+                cast.add_actor("messages", message)
 
-            for segment in trail:
-                segment.set_color(constants.WHITE)
+                for segment in trail:
+                    segment.set_color(constants.WHITE)
