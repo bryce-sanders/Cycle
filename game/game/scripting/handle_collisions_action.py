@@ -35,14 +35,22 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        player = cast.get_first_actor("players")
-        cycle = player.get_trail()[0]
-        trail = player.get_trail()[1:]
+        player1 = cast.get_first_actor("players")
+        player2 = cast.get_second_actor("players")
+
+        cycle1 = player1.get_trail()[0]
+        cycle2 = player2.get_trail()[0]
+        trail1 = player1.get_trail()[1:]
+        trail2 = player2.get_trail()[1:]
         
-        for segment in trail:
-            if cycle.get_position().equals(segment.get_position()):
+        for segment in trail1:
+            if cycle2.get_position().equals(segment.get_position()):
                 self._is_game_over = True
-        
+
+        for segment in trail2:
+            if cycle1.get_position().equals(segment.get_position()):
+                self._is_game_over = True
+                        
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         

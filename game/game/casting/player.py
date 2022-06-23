@@ -33,6 +33,9 @@ class Player(Actor):
             velocity = previous.get_velocity()
             trailing.set_velocity(velocity)
 
+    def grow_tail(self, number_of_segments):
+        pass
+
     def get_head(self):
         return self._trail[0]
 
