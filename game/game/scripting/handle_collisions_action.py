@@ -25,9 +25,8 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        if not self._is_game_over:
-            self._handle_trail_collision(cast)
-            self._handle_game_over(cast)
+        self._handle_trail_collision(cast)
+        self._handle_game_over(cast)
     
     def _handle_trail_collision(self, cast):
         """Sets the game over flag if a player collides with one a trail.
