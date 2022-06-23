@@ -26,11 +26,12 @@ class DrawActorsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        player = cast.get_first_actor("players")
-        trail = player.get_trail()
-        messages = cast.get_actors("messages")
+        players = cast.get_all_actors()
+        for player in players:
+            trail = player.get_trail()
+            messages = cast.get_actors("messages")
 
-        self._video_service.clear_buffer()
-        self._video_service.draw_actors(trail)
-        self._video_service.draw_actors(messages, True)
-        self._video_service.flush_buffer()
+            self._video_service.clear_buffer()
+            self._video_service.draw_actors(trail)
+            self._video_service.draw_actors(messages, True)
+            self._video_service.flush_buffer()
