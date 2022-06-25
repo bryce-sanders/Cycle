@@ -28,11 +28,15 @@ class DrawActorsAction(Action):
         """
         
         self._video_service.clear_buffer()
+        #call all of the items in the "players" list found in get_actors()
         players = cast.get_actors("players")
+        #this loop takes every item returned in the list
         for player in players:
+            #updates the trail and gets actors in the "messages" group
             trail = player.get_trail()
             messages = cast.get_actors("messages")
-
+            
+            #draw the called items
             self._video_service.draw_actors(trail)
             self._video_service.draw_actors(messages, True)
         self._video_service.flush_buffer()
